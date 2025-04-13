@@ -1,0 +1,484 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+#isolated-nav {
+    /* Reset box model */
+    box-sizing: content-box !important;
+    
+    /* Reset font styles */
+    font-family: 'Arial', sans-serif !important;
+    line-height: normal !important;}
+    
+    /* Reset nav specific styles */
+    .nav, .navbar, .dropdown-menu {
+        all: initial !important;
+        box-sizing: content-box !important;
+    }
+    
+    /* Your original styles with increased specificity */
+    nav {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 50px !important;
+        height: 100px !important;
+        background: linear-gradient(to bottom, #ffffff, #e1e1e1, #c6c6c6) !important;
+        position: relative !important;
+        z-index: 1001 !important;
+        border-bottom: 1px solid black;
+    }
+
+    .paintings-btn.active {
+        background: black !important;
+        color: white !important;
+        border-radius: 8px !important;
+    }
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+/* Added this rule to remove underline from all brand container links */
+.brand-container a {
+    text-decoration: none;
+}
+#logo {
+    height: 70px;
+    width: auto;
+}
+
+#heading {
+    font-size: 35px;
+    color: #333;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 4px;
+    font-weight:bolder;
+   
+}
+
+.nav-center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.nav-center > a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-center > a:hover {
+    color: #007bff;
+}
+
+.dropdown {
+    position: relative;
+}
+.paintings-btn {
+    background: none !important;
+    border: none !important;
+    font-size: 18px !important;
+    color: #333 !important;
+    cursor: pointer !important;
+    padding: 8px 25px !important;
+    transition: all 0.3s ease !important;
+    border-radius: 4px !important;
+}
+
+.paintings-btn.active {
+    background: black !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+
+.dropdown button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    padding: 8px 25px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.dropdown button.active {
+    background: #000;
+    color: #fff;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    top: 138px;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 2px solid #333;
+    padding: 20px 50px;
+    overflow-x: auto;
+    z-index: 1000;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.dropdown-content.show {
+    display: flex;
+    gap: 25px;
+    flex-wrap: nowrap;
+}
+
+.dropdown-item {
+    flex: 0 0 auto;
+    max-width: 310px;
+    text-align: center;
+}
+
+.dropdown-item a {
+    text-decoration: none;
+}
+
+.dropdown-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-item img:hover {
+    transform: scale(1.03);
+}
+
+.image-name {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #444;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+
+
+/* Sidebar */
+.sidebar {
+    width: 0;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100%;
+    background: #333;
+    color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 10px 20px;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #575757;
+}
+#Menu{
+    font-size: 17px;
+    position: relative;
+    bottom: 45px;
+    left: 20px;
+}
+
+/* Menu Button */
+.menu-btn {
+    display: none; /* Hidden on larger screens */
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000000; /* Dark color for visibility */
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    right: 800px;
+}
+    /* Sidebar Styles */
+    #sidebar {
+        position: fixed;
+        top: 135px; /* Adjust according to your navbar */
+        left: -35%;
+        width: 35%;
+        height: 100%;
+        background: #333;
+        color: white;
+        padding: 20px;
+        transition: left 0.3s ease-in-out;
+        overflow-y: auto;
+        z-index: 1000; /* Ensures sidebar is on top */
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+
+    /* Overlay effect */
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 999;
+    }
+
+    #overlay.show {
+        display: block;
+    }
+
+    /* Sidebar Links */
+    .sidebar-link {
+        display: block;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        transition: background 0.3s;
+    }
+
+    .sidebar-link:hover {
+        background: #575757;
+    }
+
+    /* Dropdown */
+    
+
+
+#sidebarDropdown {
+    display: none;
+    flex-direction: column;
+    background: #444;
+    padding-left: 15px;
+}
+
+#sidebarDropdown.show {
+    display: flex;
+}
+
+#sidebarDropdown a {
+    font-size: 16px;
+    padding: 8px;
+    color: #ddd;
+    transition: 0.3s;
+}
+
+#sidebarDropdown a:hover {
+    background: #666;
+    padding-left: 20px;
+    transition: 0.3s;
+}
+
+#paintingDropdown {
+    background-color: #111;
+    color: #fff;
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#Dropdownoption {
+    background-color: #000000;
+    color: #fff;
+}
+#free-shipping-nav{
+    background-color: rgba(0, 0, 0, 0.659);
+    color: rgb(218, 218, 218);
+    width: 100%;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .nav-center {
+        max-width: 1000px;
+        gap: 15px;
+    }
+    
+    .dropdown-item {
+        min-width: 220px;
+    }
+    
+    .dropdown-item img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 992px) {
+    nav {
+        padding: 0 30px;
+    }
+    
+    .nav-center {
+        max-width: 800px;
+        gap: 12px;
+    }
+    
+    .dropdown-content {
+        padding: 15px 30px;
+    }
+    
+    .dropdown-item {
+        min-width: 200px;
+    }
+    
+    .dropdown-item img {
+        height: 160px;
+    }
+    
+    .image-name {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    padding: 10px;
+    }
+    
+    .brand-container {
+        margin-bottom: 20px;
+    }
+    
+    .nav-center {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 0;
+        gap: 15px;
+    }
+    
+    #heading {
+        font-size: 28px;
+        
+    }
+    
+    .dropdown button {
+        padding: 8px 20px;
+       
+    }
+    
+    .dropdown-content {
+        top: 164px;
+    }
+    #painting{
+        width: 100%;
+    }
+    aside{
+        width: 0%;
+    }
+}
+
+/* @media (max-width: 576px) {
+    .brand-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #logo {
+        height: 50px;
+    }
+    
+    #heading {
+        font-size: 24px;
+    }
+    
+    .nav-center {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dropdown-content {
+        top: 190px;
+        padding: 10px 20px;
+    }
+    
+    .dropdown-item {
+        min-width: 150px;
+    }
+    
+    .dropdown-item img {
+        height: 120px;
+    }
+    
+    .image-name {
+        font-size: 12px;
+    }
+} */
+ @media(min-width:1100px){
+    .nav-center{
+        justify-content: center;
+        
+    }
+    .nav-link{
+        margin-right: 40px;
+    }
+ }
+ @media (max-width: 768px) {
+    .nav-center {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block; 
+        font-size: 30px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #000000;
+    }
+
+    nav {
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    .brand-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: auto;
+        text-align: center;
+    }
+
+    #logo {
+        height: 50px;
+    }
+
+    #heading {
+        font-size: 24px;
+    }
+}

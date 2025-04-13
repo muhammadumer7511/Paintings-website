@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="javascript/footer.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="javascript/navbar.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painting Filter</title>
+    <style>
+       * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        aside{
+            width: 17%;
+            padding: 20px;
+            background: linear-gradient(to bottom,#e1e1e1,#f0ececc6 , #ffffff);
+            height: 100vh;
+            color: black;
+            position: relative;
+            z-index: 10;
+            border-right: 1px solid rgba(65, 225, 233, 0.829);
+           
+            height: 800px;
+        }
+
+        main {
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            min-height: 100vh;
+        }
+
+        .filter-button {
+            display: none;
+            background: #3a3636;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+        label, select, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 13px;
+            padding: 8px;
+        }
+
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background: #3a3636;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .product-card {
+            width: 100px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            height: 400px;
+        }
+
+        #paintings {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        
+        }
+
+        .filter-button {
+            display: none;
+            background: #3a3636;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+        /* Navbar Menu Button */
+.menu-btn {
+  display: none; /* Hidden by default on larger screens */
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: black;
+
+}
+
+/* Show menu button on mobile */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block; /* Show menu button on small screens */
+    position: absolute;
+    left: 1px; /* Changed from right: 10px */
+    right: 100px; /* Reset right positioning */
+    top: 14px;
+width: 60px;
+}
+
+
+  /* Hide regular navbar links on mobile */
+  #navbar .nav-links {
+    display: none; 
+    /* Add your mobile menu styles here */
+  }
+}
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .filter-button {
+                display: block;
+            }
+            
+        }
+@media(1156px<width>1384px){
+#paintings{
+    justify-content: center;
+}
+}
+        label, select, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 13px;
+            padding: 8px;
+        }
+
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background: #3a3636;
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .painting {
+            display:inline-block;
+            width: 30%;
+           
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            background-color: white;
+        }
+        #paintings{
+            display: flex;
+            flex-wrap: wrap;
+            gap:5px;
+        }
+        .hidden {
+            display: none;
+        }
+        .filter-button {
+            display: none;
+            background: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border: none;
+            width: 20%;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+        }
+       #sortbyprice{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 15px 0;
+        justify-content: flex-end;
+       }
+        .product-card {
+            width: 270px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            height: 400px;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .product-title {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .product-price {
+            font-size: 18px;
+            color: black;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        .btn-buy {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        #Menu{
+           position: relative;
+    
+           bottom: 24px;
+           left: 35px;
+             display: flex;
+  justify-content: flex-start;
+        }
+        .btn-buy:hover {
+            color: #d1cece;
+        }
+       #heading{
+        margin-bottom: 12px;
+       }
+       .dropdown-item img {
+    width: 300px;
+}
+        @media (width<768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                height: auto;
+                display: none;
+            }
+       #paintings{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .filter-button {
+                display:block;
+            }
+            
+        }
+        @media(width<768px)
+        {
+            #paintings{
+                display: flex;
+                justify-content:center;
+            } .menu-button{
+           justify-content: flex-start;
+           align-content: flex-start;
+        }}
+           
+    </style>
+</head>
+<body>
+    <!-- nav start -->
+    <div id="navbar">
+    </div>
+    <!-- nav end -->
+     <!-- filter start --><div class="container">
+    <button class="filter-button" onclick="toggleFilters()">☰FILTER</button>
+    
+        <aside id="filters">
+            <h2>Filter Paintings</h2>
+
+            <label>Color:</label>
+            <select id="colorFilter">
+                <option value="">All</option>
+                <option value="Acrylic colour">Acrylic Colour</option>
+                <option value="Ball point pen">Ball Point Pen</option>
+                <option value="Charcoal">Charcoal</option>
+                <option value="Oil colour">Oil Colour</option>
+                <option value="Water colour">Water Colour</option>
+                <option value="Poster colour">Poster Colour</option>
+                <option value="Enamel colour">Enamel Colour</option>
+            </select>
+
+            <label>Surface:</label>
+            <select id="surfaceFilter">
+                <option value="">All</option>
+                <option value="Acrylic">Acrylic</option>
+                <option value="Canvas">Canvas</option>
+                <option value="Paper">Paper</option>
+                <option value="OHP sheet">OHP Sheet</option>
+                <option value="Fabric">Fabric</option>
+            </select>
+
+            <label>Price Range:</label>
+            <input type="range" id="priceRange" min="0" max="50000" step="1000" value="25000" oninput="updatePriceValue(this.value)">
+            <div class="price-range">
+                <span>0</span>
+                <span id="priceValue">25,000</span>
+                <span>50,000</span>
+            </div>
+
+            <button onclick="filterPaintings()">Apply Filter</button>
+            <button onclick="refreshFilters()">Refresh Filters</button>
+        </aside>
+               <!-- filter end -->
+        <main>
+           <!-- sort by price start -->
+           <div id="sortbyprice"> <label for="sort">Sort by Price:</label>
+    <select id="sort" onchange="sortProducts()">
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
+    </select></div>
+            <!-- sort by price end -->
+
+             <!-- Cards Start -->
+    <h2>Available Paintings</h2> 
+            <div id="paintings">
+                <a href="nature(1).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Acrylic colour" data-surface="Acrylic" data-price="6999"><img src="images/naturepainting(1).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Nature Painting</h5>
+                    <p>color:Acrylic colour</p>
+                    <p style="margin-top: 3px;">Surface:Acrylic</p>
+                    <p class="product-price">Rs:6999</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                    <a href="nature(2).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Oil colour" data-surface="Acrylic" data-price="7599"><img src="images/naturepainting(2).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Nature Painting</h5>
+                    <p>color:Oil colour</p>
+                    <p style="margin-top: 3px;">Surface:Acrylic</p>
+                    <p class="product-price">Rs:7599</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                    <a href="nature(3).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Charcoal" data-surface="Acrylic" data-price="7999"><img src="images/naturepainting(30).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Nature Painting</h5>
+                    <p>color:Charcoal colour</p>
+                    <p style="margin-top: 3px;">Surface:Acrylic</p>
+                    <p class="product-price">Rs:7999</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                    <a href="nature(4).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Poster colour" data-surface="Acrylic" data-price="8499"><img src="images/naturepainting(3).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Nature Painting</h5>
+                    <p>color:Poster colour</p>
+                    <p style="margin-top: 3px;">Surface:Acrylic</p>
+                    <p class="product-price">Rs:8499</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                    <a href="nature(5).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Ball point pen" data-surface="Acrylic" data-price="6599"><img src="images/naturepainting(4).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Nature Painting</h5>
+                    <p>color:Ball point pen </p>
+                    <p style="margin-top: 3px;">Surface:Acrylic</p>
+                    <p class="product-price">Rs:6599</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                    <a href="nature(6).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Water colour" data-surface="Acrylic" data-price="10999"><img src="images/naturepainting(5).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Nature Painting</h5>
+                    <p>color:Water colour</p>
+                    <p style="margin-top: 3px;">Surface:Acrylic</p>
+                    <p class="product-price">Rs:10999</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                    <a href="nature(7).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Enamel colour" data-surface="Acrylic" data-price="15599"><img src="images/naturepainting(6).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Nature Painting</h5>
+                    <p>color:Enamel colour</p>
+                    <p style="margin-top: 3px;">Surface:Acrylic</p>
+                    <p class="product-price">Rs:15599</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                   
+                    <a href="nature(8).detaled-page.html" style="text-decoration: none;color: black;"> <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="25999"><img src="images/naturepainting(7).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Nature Painting</h5>
+                        <p>color:Acrylic colour</p>
+                        <p style="margin-top: 3px;">Surface:Canvas</p>
+                        <p class="product-price">Rs:25999</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                        <a href="nature(9).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Oil colour" data-surface="Canvas" data-price="13999"><img src="images/naturepainting(8).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Nature Painting</h5>
+                        <p>color:Oil colour</p>
+                        <p style="margin-top: 3px;">Surface:Canvas</p>
+                        <p class="product-price">Rs:13999</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                        <a href="nature(10).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Charcoal" data-surface="Canvas" data-price="7999"><img src="images/naturepainting(9).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Nature Painting</h5>
+                        <p>color:Charcoal colour</p>
+                        <p style="margin-top: 3px;">Surface:Canvas</p>
+                        <p class="product-price">Rs:7999</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                        <a href="nature(11).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Poster colour" data-surface="Canvas" data-price="8499"><img src="images/naturepainting(10).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Nature Painting</h5>
+                        <p>color:Poster colour</p>
+                        <p style="margin-top: 3px;">Surface:Canvas</p>
+                        <p class="product-price">Rs:8499</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                        <a href="nature(12).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Ball point pen" data-surface="Canvas" data-price="30999"><img src="images/naturepainting(11).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Nature Painting</h5>
+                        <p>color:Ball point pen </p>
+                        <p style="margin-top: 3px;">Surface:Canvas</p>
+                        <p class="product-price">Rs:30999</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                        <a href="nature(13).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Water colour" data-surface="Canvas" data-price="10999"><img src="images/naturepainting(12).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Nature Painting</h5>
+                        <p>color:Water colour</p>
+                        <p style="margin-top: 3px;">Surface:Canvas</p>
+                        <p class="product-price">Rs:10999</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                        <a href="nature(14).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Enamel colour" data-surface="Canvas" data-price="15599"><img src="images/naturepainting(13).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Nature Painting</h5>
+                        <p>color:Enamel colour</p>
+                        <p style="margin-top: 3px;">Surface:Canvas</p>
+                        <p class="product-price">Rs:15599</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                        <a href="nature(15).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Acrylic colour" data-surface="Paper" data-price="5999"><img src="images/naturepainting(14).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Nature Painting</h5>
+                            <p>color:Acrylic colour</p>
+                            <p style="margin-top: 3px;">Surface:Paper</p>
+                            <p class="product-price">Rs:5999</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a></div></a></a>
+                            <a href="nature(16).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Oil colour" data-surface="Paper" data-price="17599"><img src="images/naturepainting(15).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Nature Painting</h5>
+                            <p>color:Oil colour</p>
+                            <p style="margin-top: 3px;">Surface:Paper</p>
+                            <p class="product-price">Rs:17599</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                            <a href="nature(17).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Charcoal" data-surface="Paper" data-price="9999"><img src="images/naturepainting(16).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Nature Painting</h5>
+                            <p>color:Charcoal colour</p>
+                            <p style="margin-top: 3px;">Surface:Paper</p>
+                            <p class="product-price">Rs:9999</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                            <a href="nature(18).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Poster colour" data-surface="Paper" data-price="8199"><img src="images/naturepainting(17).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Nature Painting</h5>
+                            <p>color:Poster colour</p>
+                            <p style="margin-top: 3px;">Surface:Paper</p>
+                            <p class="product-price">Rs:8199</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                            <a href="nature(19).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Ball point pen" data-surface="Paper" data-price="33999"><img src="images/naturepainting(18).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Nature Painting</h5>
+                            <p>color:Ball point pen </p>
+                            <p style="margin-top: 3px;">Surface:Paper</p>
+                            <p class="product-price">Rs:33999</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                            <a href="nature(20).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Water colour" data-surface="Paper" data-price="6599"><img src="images/naturepainting(19).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Nature Painting</h5>
+                            <p>color:Water colour</p>
+                            <p style="margin-top: 3px;">Surface:Paper</p>
+                            <p class="product-price">Rs:6599</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                            <a href="nature(21).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Enamel colour" data-surface="Paper" data-price="14599"><img src="images/naturepainting(20).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Nature Painting</h5>
+                            <p>color:Enamel colour</p>
+                            <p style="margin-top: 3px;">Surface:Paper</p>
+                            <p class="product-price">Rs:14599</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                            <a href="nature(22).detaled-page.html" style="text-decoration: none;color: black;"> <div class="product-card" data-color="Acrylic colour" data-surface="OHP Sheet" data-price="26999"><img src="images/naturepainting(21).jpg" class="product-image" alt="Product Image">
+                                <h5 class="product-title">Nature Painting</h5>
+                                <p>color:Acrylic colour</p>
+                                <p style="margin-top: 3px;">Surface:OHP Sheet</p>
+                                <p class="product-price">Rs:26999</p>
+                                <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                <a href="nature(23).detaled-page.html" style="text-decoration: none;color: black;"> <div class="product-card" data-color="Oil colour" data-surface="OHP Sheet" data-price="17599"><img src="images/naturepainting(22).jpg" class="product-image" alt="Product Image">
+                                <h5 class="product-title">Nature Painting</h5>
+                                <p>color:Oil colour</p>
+                                <p style="margin-top: 3px;">Surface:OHP Sheet</p>
+                                <p class="product-price">Rs:17599</p>
+                                <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                <a href="nature(24).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Charcoal" data-surface="OHP Sheet" data-price="25999"><img src="images/naturepainting(23).jpg" class="product-image" alt="Product Image">
+                                <h5 class="product-title">Nature Painting</h5>
+                                <p>color:Charcoal colour</p>
+                                <p style="margin-top: 3px;">Surface:OHP Sheet</p>
+                                <p class="product-price">Rs:25999</p>
+                                <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                <a href="nature(25).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Poster colour" data-surface="OHP Sheet" data-price="8499"><img src="images/naturepainting(24).jpg" class="product-image" alt="Product Image">
+                                <h5 class="product-title">Nature Painting</h5>
+                                <p>color:Poster colour</p>
+                                <p style="margin-top: 3px;">Surface:OHP Sheet</p>
+                                <p class="product-price">Rs:8499</p>
+                                <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                <a href="nature(26).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Ball point pen" data-surface="OHP Sheet" data-price="6599"><img src="images/naturepainting(25).jpg" class="product-image" alt="Product Image">
+                                <h5 class="product-title">Nature Painting</h5>
+                                <p>color:Ball point pen </p>
+                                <p style="margin-top: 3px;">Surface:OHP Sheet</p>
+                                <p class="product-price">Rs:6599</p>
+                                <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                <a href="nature(27).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Water colour" data-surface="OHP Sheet" data-price="10999"><img src="images/naturepainting(26).jpg" class="product-image" alt="Product Image">
+                                <h5 class="product-title">Nature Painting</h5>
+                                <p>color:Water colour</p>
+                                <p style="margin-top: 3px;">Surface:OHP Sheet</p>
+                                <p class="product-price">Rs:10999</p>
+                                <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                <a href="nature(28).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Enamel colour" data-surface="OHP Sheet" data-price="15599"><img src="images/naturepainting(27).jpg" class="product-image" alt="Product Image">
+                                <h5 class="product-title">Nature Painting</h5>
+                                <p>color:Enamel colour</p>
+                                <p style="margin-top: 3px;">Surface:OHP Sheet</p>
+                                <p class="product-price">Rs:15599</p>
+                                <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                <a href="nature(29).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Acrylic colour" data-surface="Fabric" data-price="6999"><img src="images/naturepainting(28).jpg" class="product-image" alt="Product Image">
+                                    <h5 class="product-title">Nature Painting</h5>
+                                    <p>color:Acrylic colour</p>
+                                    <p style="margin-top: 3px;">Surface:Fabric</p>
+                                    <p class="product-price">Rs:6999</p>
+                                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                    <a href="nature(30).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Oil colour" data-surface="Fabric" data-price="27599"><img src="images/naturepainting(29).jpg" class="product-image" alt="Product Image">
+                                    <h5 class="product-title">Nature Painting</h5>
+                                    <p>color:Oil colour</p>
+                                    <p style="margin-top: 3px;">Surface:Fabric</p>
+                                    <p class="product-price">Rs:27599</p>
+                                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                    <a href="nature(31).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Charcoal" data-surface="Fabric" data-price="7999"><img src="images/naturepainting(30).jpg" class="product-image" alt="Product Image">
+                                    <h5 class="product-title">Nature Painting</h5>
+                                    <p>color:Charcoal colour</p>
+                                    <p style="margin-top: 3px;">Surface:Fabric</p>
+                                    <p class="product-price">Rs:7999</p>
+                                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                    <a href="nature(32).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Poster colour" data-surface="Fabric" data-price="8499"><img src="images/naturepainting(31).jpg" class="product-image" alt="Product Image">
+                                    <h5 class="product-title">Nature Painting</h5>
+                                    <p>color:Poster colour</p>
+                                    <p style="margin-top: 3px;">Surface:Fabric</p>
+                                    <p class="product-price">Rs:8499</p>
+                                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                    <a href="nature(33).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Ball point pen" data-surface="Fabric" data-price="9599"><img src="images/naturepainting(32).jpg" class="product-image" alt="Product Image">
+                                    <h5 class="product-title">Nature Painting</h5>
+                                    <p>color:Ball point pen </p>
+                                    <p style="margin-top: 3px;">Surface:Fabric</p>
+                                    <p class="product-price">Rs:9599</p>
+                                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                    <a href="nature(34).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Water colour" data-surface="Fabric" data-price="10999"><img src="images/naturepainting(33).jpg" class="product-image" alt="Product Image">
+                                    <h5 class="product-title">Nature Painting</h5>
+                                    <p>color:Water colour</p>
+                                    <p style="margin-top: 3px;">Surface:Fabric</p>
+                                    <p class="product-price">Rs:10999</p>
+                                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+                                    <a href="nature(35).detaled-page.html" style="text-decoration: none;color: black;"><div class="product-card" data-color="Enamel colour" data-surface="Fabric" data-price="15599"><img src="images/naturepainting(34).jpg" class="product-image" alt="Product Image">
+                                    <h5 class="product-title">Nature Painting</h5>
+                                    <p>color:Enamel colour</p>
+                                    <p style="margin-top: 3px;">Surface:Fabric</p>
+                                    <p class="product-price">Rs:15599</p>
+                                    <a href="buynow.html" class="btn-buy">Buy Now</a></div></a>
+            </div>
+        </main>
+    </div>
+              <!-- Cards End -->
+          <div id="footer"></div>
+    <script>
+        // Update Price Value Display
+function updatePriceValue(value) {
+    document.getElementById("priceValue").textContent = value;
+}
+
+// Toggle Filters for Small Screens
+function toggleFilters() {
+    let filters = document.getElementById("filters");
+    filters.style.display = filters.style.display === "block" ? "none" : "block";
+}
+
+// Apply Filters to Paintings
+function filterPaintings() {
+    let color = document.getElementById("colorFilter").value;
+    let surface = document.getElementById("surfaceFilter").value;
+    let maxPrice = parseInt(document.getElementById("priceRange").value);
+
+    document.querySelectorAll(".product-card").forEach(painting => {
+        let paintingColor = painting.getAttribute("data-color");
+        let paintingSurface = painting.getAttribute("data-surface");
+        let paintingPrice = parseInt(painting.getAttribute("data-price"));
+
+        let show = true;
+        if (color && paintingColor !== color) show = false;
+        if (surface && paintingSurface !== surface) show = false;
+        if (paintingPrice > maxPrice) show = false;
+
+        painting.classList.toggle("hidden", !show);
+    });
+}
+
+// Reset Filters
+function refreshFilters() {
+    document.getElementById("colorFilter").value = "";
+    document.getElementById("surfaceFilter").value = "";
+    document.getElementById("priceRange").value = "25000";
+    updatePriceValue(25000);
+    filterPaintings();
+}
+function sortProducts() {
+        let list = document.getElementById("paintings");
+        let items = Array.from(list.getElementsByClassName("product-card"));
+        let sortType = document.getElementById("sort").value;
+
+        items.sort((a, b) => {
+            let priceA = parseInt(a.getAttribute("data-price"));
+            let priceB = parseInt(b.getAttribute("data-price"));
+
+            return sortType === "low" ? priceA - priceB : priceB - priceA;
+        });
+
+        list.innerHTML = "";
+        items.forEach(item => list.appendChild(item));
+    }
+    </script>
+</body>
+</html>

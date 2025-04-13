@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="javascript/navbar.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="javascript/footer.js"></script>
+    <link rel="stylesheet" href="css/navbar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .carousel,
+        .item,
+        .active {
+            height: 100%;
+            border-top: 2px solid black;
+        }
+
+        .carousel-inner {
+            height: 100%;
+            background: #000;
+        }
+
+        .carousel-caption {
+            padding-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 60px;
+        }
+
+        p {
+            padding: 10px
+        }
+
+        /* Background images are set within the HTML using inline CSS, not here */
+
+        .fill {
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            opacity: 0.6;
+        }
+
+
+
+
+        /**
+       * Button
+       */
+        .btn-transparent {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .btn-transparent:hover {
+            background-color: #fff;
+            color: black;
+        }
+
+        .btn-rounded {
+            border-radius: 70px;
+        }
+
+        .btn-large {
+            padding: 11px 45px;
+            font-size: 18px;
+        }
+
+        /**
+       * Change animation duration
+       */
+        .animated {
+            -webkit-animation-duration: 1.5s;
+            animation-duration: 1.5s;
+        }
+
+        .carousel-caption {
+            margin-bottom: 80px;
+        }
+
+        @-webkit-keyframes fadeInRight {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(100px, 0, 0);
+                transform: translate3d(100px, 0, 0);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(100px, 0, 0);
+                transform: translate3d(100px, 0, 0);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        .fadeInRight {
+            -webkit-animation-name: fadeInRight;
+            animation-name: fadeInRight;
+        }
+
+        #container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .category {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .large {
+            grid-column: span 2;
+        }
+
+        .content {
+            text-align: center;
+            color: rgb(255, 255, 255);
+            /* Brighter text */
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.5s;
+            z-index: 1;
+            transition: all 0.7s ease;
+        }
+
+        .buy-now {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .category:hover .buy-now {
+            display: inline-block;
+
+        }
+
+        .buy-now {
+            display: inline-block;
+            /* Changed from display: none */
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+        }
+
+        .buy-now:hover {
+            color: rgba(179, 178, 178, 0.752);
+        }
+
+        .category:hover .buy-now {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .category:hover .content {
+            transform: translate(-50%, -60%);
+            /* Move content up slightly on hover */
+        }
+
+        #ourstory {
+            background-color: black;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            min-height: 500px;
+        }
+
+        #storyvideo {
+            width: 45%;
+            max-width: 600px;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 100px;
+        }
+
+        #our-story-content {
+            width: 45%;
+            color: white;
+            padding-left: 5%;
+            margin-top: 40px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .buy-now-button {
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            height: 37px;
+            width: 100px;
+            border: 1px solid white;
+            transition: 0.3s;
+        }
+
+        .buy-now-button:hover {
+            color: rgb(167, 167, 167);
+        }
+
+        .product-card {
+            width: 282px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            height: 400px;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: black;
+            font-weight: bold;
+            position: relative;
+            bottom: 80px;
+        }
+
+        #surface {
+            position: relative;
+            bottom: 45px;
+        }
+
+        #colour {
+            position: relative;
+            bottom: 15px;
+        }
+
+        .btn-buy {
+            display: inline-block;
+
+            padding: 10px 15px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            transition: background 0.3s;
+            position: relative;
+            bottom: 100px;
+        }
+
+        .btn-buy:hover {
+            color: #d1cece;
+        }
+
+        #paintings {
+            display: flex;
+            
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .products-slider-container {
+            position: relative;
+            padding: 20px 0;
+            margin: 0 20px;
+        }
+
+        .products-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 0 20px;
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .products-slider::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Edge */
+        }
+
+        .slider-prev,
+        .slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .slider-prev:hover,
+        .slider-next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-prev {
+            left: 10px;
+        }
+
+        .slider-next {
+            right: 10px;
+        }
+
+        .product-card {
+            flex: 0 0 auto;
+        }
+        .products-slider {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; /* Better scroll on iOS */
+    }
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            #ourstory {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 15px;
+            }
+
+            #storyvideo {
+                width: 90%;
+                height: auto;
+            }
+
+            #our-story-content {
+                width: 90%;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .buy-now-button {
+                align-self: center;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            #container {
+                grid-template-columns: 1fr;
+            }
+
+            .large {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <!-- Full Page Image Background Carousel Header -->
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="fill" style="background-image:url('images/carousel1.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2 class="animated fadeInLeft">Variety of Paintings</h2>
+                    <p class="animated fadeInUp">We have a number of different varieties of Paintings</p>
+                    <p class="animated fadeInUp">
+                        <a href="abstractpainting.html" class="btn btn-transparent btn-rounded btn-large">Buy Now</a>
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="fill" style="background-image:url('images/carousel2.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2 class="animated fadeInDown"> Variety of Colours</h2>
+                    <p class="animated fadeInUp">We have a number of different varieties of Colours</p>
+                    <p class="animated fadeInUp">
+                        <a href="abstractpainting.html" class="btn btn-transparent btn-rounded btn-large">Buy Now </a>
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="fill" style="background-image:url('images/carousel3.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2 class="animated fadeInRight">Variety of Surfaces</h2>
+                    <p class="animated fadeInRight">We have a number of different varieties of Surfaces</p>
+                    <p class="animated fadeInRight">
+                        <a href="abstractpainting.html" class="btn btn-transparent btn-rounded btn-large">Buy Now </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- our catogories start -->
+    <div>
+        <p style="color: rgb(185, 138, 50);justify-content: center;display: flex;font-size: 15px;">WELCOME TO GALLERIA
+        </p>
+        <h1 style="display: flex;justify-content: center;position: relative;bottom: 10px;font-family: fantasy;">Our
+            Categories</h1>
+        <p style="color: rgba(36, 32, 32, 0.71);display: flex;justify-content: center;position: relative;bottom: 11px;">
+            HAVE A LOOK AT PRODUCT CATALOGUE</p>
+    </div>
+    <div id="container">
+        <a href="abstractpainting.html">
+            <div class="category" style="background-image: url('images/abstract-painting\ \(19\).jpg');">
+                <div class="content">Abstract Painting <button class="buy-now">See More</button></div>
+            </div>
+        </a>
+        <a href="landscapepainting.html">
+            <div class="category" style="background-image: url('images/landscape\ painting\(9\).jpg');">
+                <div class="content">Landscape Painting <button class="buy-now">See More</button></div>
+            </div>
+        </a>
+        <a href="religiouspainting.html">
+            <div class="category" style="background-image: url('images/religious\ painting\(22\).jpg');">
+                <div class="content">Religious Painting <button class="buy-now">See More</button></div>
+            </div>
+        </a>
+        <a href="figurativepainting.html">
+            <div class="category" style="background-image: url('images/figurativepainting\(24\).jpg');">
+                <div class="content">Figurative Painting <button class="buy-now">See More</button></div>
+            </div>
+        </a>
+        <div class="category large" style="background-image: url('images/naturepainting\(10\).jpg');">
+            <div class="content">Nature Painting <br><button class="buy-now"><a href="naturepainting.html"
+                        style="text-decoration: none;color: white;">See More</a></button></div>
+        </div>
+        <div class="category large" style="background-image: url('images/flowers\ painting\(2\).jpg');">
+            <div class="content">Flowers Painting <br> <button class="buy-now"><a href="flowerpainting.html"
+                        style="text-decoration: none;color: white;">See More</a></button></div>
+        </div>
+    </div>
+
+    <div id="ourstory"><video controls width="47%" style="margin-top: 100px;" id="storyvideo">
+            <source src="images/galleria_story_trimmed (1).mp4" type="video/mp4">
+        </video>
+        <div id="our-story-content">
+            <h1 style="font-weight: 550;">Our Story</h1><br>
+            <p style="color: rgb(222, 222, 222);font-size: 18px;">Watch this short animated clip to learn more on how
+                Galleria bridges the gap between artists and art-lovers.</p><br>
+            <a href="abstractpainting.html"><button class="buy-now-button">Buy Now</button></a>
+        </div>
+    </div>
+
+    <!-- newly added products -->
+
+    <p style="color: rgb(185, 138, 50);justify-content: center;display: flex;font-size: 15px;">WELCOME TO GALLERIA</p>
+    <h1 style="display: flex;justify-content: center;position: relative;bottom: 10px;font-family: fantasy;">Newly Added
+        Products</h1>
+    <p style="color: rgba(36, 32, 32, 0.71);display: flex;justify-content: center;position: relative;bottom: 11px;">HAVE
+        A LOOK AT OUR LATEST PRODUCT</p>
+    <div class="products-slider-container">
+        <button class="slider-prev">←</button>
+        <button class="slider-next">→</button>
+        <div class="products-slider">
+            <a href="religious(19).detailed-page.html" style="text-decoration: none;color: black;">
+                <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                        src="images/religious painting(18).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Religious Painting</h5>
+                    <p id="colour">color:Acrylic colour</p>
+                    <p id="surface">Surface:Canvas</p>
+                    <p class="product-price">Rs:33,999</p>
+                    <a href="re.html" class="btn-buy">Buy Now</a>
+                </div>
+            </a>
+            <a href="Abstract(28).detailedpage.html" style="text-decoration: none;color: black;">
+                <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                        src="images/abstract-painting (28).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Abstract Painting</h5>
+                    <p id="colour">color:Acrylic colour</p>
+                    <p id="surface">Surface:Canvas</p>
+                    <p class="product-price">Rs:15,599</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a>
+                </div>
+            </a>
+            <a href="landscape(11).detailedpage.html" style="text-decoration: none;color: black;">
+                <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                        src="images/landscape painting(10).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Landscape Painting</h5>
+                    <p id="colour">color:Acrylic colour</p>
+                    <p id="surface">Surface:Canvas</p>
+                    <p class="product-price">Rs:8,999</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a>
+                </div>
+            </a>
+            <a href="flower(12).detailedpage.html" style="text-decoration: none;color: black;">
+                <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                        src="images/flowers painting(12).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Flower Painting</h5>
+                    <p id="colour">color:Acrylic colour</p>
+                    <p id="surface">Surface:Canvas</p>
+                    <p class="product-price">Rs:30,999</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a>
+                </div>
+            </a>
+            <a href="figurative(13).detailed-page.html" style="text-decoration: none;color: black;">
+                <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                        src="images/figurativepainting(12).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Figurative Painting</h5>
+                    <p id="colour">color:Acrylic colour</p>
+                    <p id="surface">Surface:Canvas</p>
+                    <p class="product-price">Rs:10,999</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a>
+                </div>
+            </a>
+            <a href="religious(17).detailed-page.html" style="text-decoration: none;color: black;">
+                <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                        src="images/religious painting(16).jpg" class="product-image" alt="Product Image">
+                    <h5 class="product-title">Religious Painting</h5>
+                    <p id="colour">color:Acrylic colour</p>
+                    <p id="surface">Surface:Canvas</p>
+                    <p class="product-price">Rs:9,999</p>
+                    <a href="buynow.html" class="btn-buy">Buy Now</a>
+                </div>
+            </a>
+<a href="Abstract(4).detailedpage.html" style="text-decoration: none;color: black;">
+            <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                    src="images/abstract-painting (4).jpg" class="product-image" alt="Product Image">
+                <h5 class="product-title">Abstract Painting</h5>
+                <p id="colour">color:Acrylic colour</p>
+                <p id="surface">Surface:Canvas</p>
+                <p class="product-price">Rs:8,499</p>
+                <a href="buynow.html" class="btn-buy">Buy Now</a>
+            </div>
+        </a>
+
+        <a href="landscape(6).detailedpage.html" style="text-decoration: none;color: black;">
+            <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                    src="images/landscape painting(5).jpg" class="product-image" alt="Product Image">
+                <h5 class="product-title">Landscape Painting</h5>
+                <p id="colour">color:Acrylic colour</p>
+                <p id="surface">Surface:Canvas</p>
+                <p class="product-price">Rs:10,999</p>
+                <a href="buynow.html" class="btn-buy">Buy Now</a>
+            </div>
+        </a>
+
+        <a href="flower(10).detailedpage.html" style="text-decoration: none;color: black;">
+            <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                    src="images/flowers painting(10).jpg" class="product-image" alt="Product Image">
+                <h5 class="product-title">Flower Painting</h5>
+                <p id="colour">color:Acrylic colour</p>
+                <p id="surface">Surface:Canvas</p>
+                <p class="product-price">Rs:7,999</p>
+                <a href="buynow.html" class="btn-buy">Buy Now</a>
+            </div>
+        </a>
+
+        <a href="figurative(24).detailed-page.html" style="text-decoration: none;color: black;">
+            <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                    src="images/figurativepainting(23).jpg" class="product-image" alt="Product Image">
+                <h5 class="product-title">Figurative Painting</h5>
+                <p id="colour">color:Acrylic colour</p>
+                <p id="surface">Surface:Canvas</p>
+                <p class="product-price">Rs:25,999</p>
+                <a href="buynow.html" class="btn-buy">Buy Now</a>
+            </div>
+        </a>
+
+        </div>
+    </div>
+    <!-- footer -->
+    <div id="footer"></div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("storyvideo");
+        video.pause(); // Ensure video does not autoplay on page load
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play(); // Play when video is in view
+                } else {
+                    video.pause(); // Pause when video is out of view
+                    video.currentTime = 0; // Reset video when out of view
+                }
+            });
+        }, { threshold: 0.7 }); // Video starts when 70% visible
+
+        observer.observe(video);
+    });
+    // JavaScript for slider controls 
+    document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector('.products-slider');
+        const prevButton = document.querySelector('.slider-prev');
+        const nextButton = document.querySelector('.slider-next');
+
+        if (slider && prevButton && nextButton) {
+            const card = slider.querySelector('.product-card');
+            if (card) {
+                const cardWidth = card.offsetWidth;
+                const gap = 20; // Should match CSS gap value
+                const scrollAmount = cardWidth + gap;
+
+                nextButton.addEventListener('click', function () {
+                    slider.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+
+                prevButton.addEventListener('click', function () {
+                    slider.scrollBy({
+                        left: -scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        }
+    });
+</script>

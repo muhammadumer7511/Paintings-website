@@ -1,0 +1,89 @@
+
+<!-- Navbar --> 
+ <div id="free-shipping-nav">GET  FREE  SHIPPING  ON  ORDERS  ABOVE  RS. 9,999/-</div>
+<nav>
+    <div class="brand-container">
+        <a href="index.html">
+            <img src="images/added!.jpg" alt="Logo" id="logo">
+        </a>
+        <a href="index.html">
+            <!-- heading -->
+            <h2 id="heading">GALLERIA</h2>
+        </a>
+    </div>
+   <!-- links -->
+    <div class="nav-center">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="Aboutus.html" class="nav-link">About Us</a>
+        <a href="Gallery.html" class="nav-link">Gallery</a>
+        <a href="Contactus.html" class="nav-link">Contact Us</a>
+        <a href="FAQS.html" class="nav-link">FAQS</a>
+         <!-- painting dropdown -->
+        <div class="dropdown">
+            <button onclick="toggleDropdown()" class="paintings-btn">Paintings</button>
+            <div id="imageDropdown" class="dropdown-content">
+                <div class="dropdown-item">
+                    <a href="abstractpainting.html">
+                        <img src="images/abstract-painting (7).jpg" alt="Abstract">
+                        <div class="image-name">Abstract Painting</div>
+                    </a>
+                </div>
+                <div class="dropdown-item">
+                    <a href="landscapepainting.html">
+                        <img src="images/landscape painting(6).jpg" alt="Landscape">
+                        <div class="image-name">Landscape</div>
+                    </a>
+                </div>
+                <div class="dropdown-item">
+                    <a href="flowerpainting.html">
+                        <img src="images/flowers painting(1).jpg" alt="Flowers">
+                        <div class="image-name">Flower Painting</div>
+                    </a>
+                </div>
+                <div class="dropdown-item">
+                    <a href="naturepainting.html">
+                        <img src="images/naturepainting(7).jpg" alt="Nature">
+                        <div class="image-name">Nature Scene</div>
+                    </a>
+                </div>
+                <div class="dropdown-item">
+                    <a href="figurativepainting.html">
+                        <img src="images/figurativepainting(34).jpg" alt="Figurative">
+                        <div class="image-name">Figurative Art</div>
+                    </a>
+                </div>
+                <div class="dropdown-item">
+                    <a href="religiouspainting.html">
+                        <img src="images/religious painting(18).jpg" alt="Religious">
+                        <div class="image-name">Religious Art</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- menu button -->
+    <button class="menu-btn" onclick="toggleSidebar()">☰<p id="Menu">MENU</p></button>
+</nav>
+
+<!-- Sidebar -->
+<div id="sidebar">
+    
+    <div class="sidebar-content">
+        <a href="index.html" class="sidebar-link">Home</a>
+        <a href="Aboutus.html" class="sidebar-link">About Us</a>
+        <a href="Gallery.html" class="sidebar-link">Gallery</a>
+        <a href="Contactus.html" class="sidebar-link">Contact Us</a>
+        <a href="FAQS.html" class="sidebar-link">FAQs</a>
+
+        <select id="paintingDropdown" onchange="navigateToPage()">
+            <option value="" id="option">Select a Painting</option>
+            <option value="abstractpainting.html" id="Dropdownoption">Abstract Painting</option>
+            <option value="landscapepainting.html" id="Dropdownoption">Landscape Painting</option>
+            <option value="flowerpainting.html" id="Dropdownoption">Flower Painting</option>
+            <option value="naturepainting.html" id="Dropdownoption">Nature Painting</option>
+            <option value="figurativepainting.html" id="Dropdownoption">Figurative Art</option>
+            <option value="religiouspainting.html" id="Dropdownoption">Religious Art</option>
+        </select>
+    </div>
+</div>
+

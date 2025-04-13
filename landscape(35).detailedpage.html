@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/detailed-page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landscape Painting - Product Details</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="javascript/detailed-page.js"></script>
+    <script src="javascript/navbar.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="javascript/footer.js"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <!-- Product Details -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col-md-6 mb-4">
+                <img src="images/landscape painting(34).jpg" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
+                <div class="d-flex justify-content-between">
+                    <img src="images/landscape painting(34).jpg" alt="Thumbnail 1" class="thumbnail rounded active" onclick="changeImage(event, this.src)">
+                    <img src="images/landscape painting(34).jpg" alt="Thumbnail 2" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+                    <img src="images/landscape painting(34).jpg" alt="Thumbnail 3" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+                    <img src="images/landscape painting(34).jpg" alt="Thumbnail 4" class="thumbnail rounded" onclick="changeImage(event, this.src)">
+                </div>
+            </div>
+
+            <!-- Product Information -->
+            <div class="col-md-6">
+                <h2 class="mb-3">Landscape Painting</h2>
+                <span class="h4 text-danger">Rs: 15,599</span>
+                <div class="mb-3">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-half text-warning"></i>
+                    <span class="ms-2">4.5</span>
+                </div>
+                <p class="mb-4">A beautiful piece of art that will enhance the grace of your home.</p>
+                
+                <!-- Quantity Selector -->
+                <div class="mb-4">
+                    <label for="quantity" class="form-label">Quantity:</label>
+                    <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
+                </div>
+
+                <!-- Buy Now Button -->
+                <a href="buynow.html" >
+                     <button id="buttonhover">Buy Now</button>
+                </a>
+                <br>
+                <br>
+                <a href="landscape word document (4).docx">
+                    <button id="buttonword">Save as word</button>
+                </a>
+                <!-- Key Features -->
+                <div class="mt-4">
+                    <h5>Key Features:</h5>
+                    <ul>
+                        <li>Amazing Design</li>
+                        <li>Attractive Art</li>
+                        <li>Beautiful Color Palette</li>
+                        <li>Hand-Painted on High-Quality Canvas</li>
+                        <li>Perfect for Home and Office Decor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Product Description -->
+        <div class="mt-5">
+            <h4>Product Description</h4>
+            <p>
+                This painting is created with high-quality colors on a premium surface. 
+                The vibrant colors and intricate patterns make it a perfect decor piece for your home or office.
+                Each stroke adds depth and texture, making it a masterpiece that stands out.
+            </p>
+        </div>
+
+        <!-- Product Specifications -->
+        <div class="mt-4">
+            <h4>Specifications</h4>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Material</th>
+                    <td>High-Quality</td>
+                </tr>
+                <tr>
+                    <th>Size</th>
+                    <td>24 x 36 inches</td>
+                </tr>
+                <tr>
+                    <th>Weight</th>
+                    <td>1.5 kg</td>
+                </tr>
+                <tr>
+                    <th>Frame</th>
+                    <td>Wooden Frame Included</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Customer Reviews -->
+        <div class="mt-5">
+            <h4>Customer Reviews</h4>
+            <div class="border p-3 mb-3">
+                <strong>Ali Khan</strong> - <i class="bi bi-star-fill text-warning"></i> <i class="bi bi-star-fill text-warning"></i> <i class="bi bi-star-fill text-warning"></i> <i class="bi bi-star-fill text-warning"></i> <i class="bi bi-star text-warning"></i>
+                <p>"Amazing artwork! The colors are vibrant and match my living room perfectly."</p>
+            </div>
+            <div class="border p-3 mb-3">
+                <strong>Sara Ahmed</strong> - <i class="bi bi-star-fill text-warning"></i> <i class="bi bi-star-fill text-warning"></i> <i class="bi bi-star-fill text-warning"></i> <i class="bi bi-star-half text-warning"></i> <i class="bi bi-star text-warning"></i>
+                <p>"Good quality, but the delivery took a bit longer than expected."</p>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+       
+            <h4 style="font-weight: bolder;">Related Products</h4>
+            <div class="products-slider-container">
+                <button class="slider-prev">←</button>
+                <button class="slider-next">→</button>
+                <div class="products-slider">
+                    <a href="detail-page.html" style="text-decoration: none;color: black;">
+                        <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                                src="images/religious painting(18).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Religious Painting</h5>
+                            <p id="colour">color:Acrylic colour</p>
+                            <p id="surface">Surface:Canvas</p>
+                            <p class="product-price">Rs:6999</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a>
+                        </div>
+                    </a>
+                    <a href="detail-page.html" style="text-decoration: none;color: black;">
+                        <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                                src="images/abstract-painting (28).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Abstract Painting</h5>
+                            <p id="colour">color:Acrylic colour</p>
+                            <p id="surface">Surface:Canvas</p>
+                            <p class="product-price">Rs:8999</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a>
+                        </div>
+                    </a>
+                    <a href="detail-page.html" style="text-decoration: none;color: black;">
+                        <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                                src="images/landscape painting(10).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Landscape Painting</h5>
+                            <p id="colour">color:Acrylic colour</p>
+                            <p id="surface">Surface:Canvas</p>
+                            <p class="product-price">Rs:17599</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a>
+                        </div>
+                    </a>
+                    <a href="detail-page.html" style="text-decoration: none;color: black;">
+                        <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                                src="images/flowers painting(12).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Flower Painting</h5>
+                            <p id="colour">color:Acrylic colour</p>
+                            <p id="surface">Surface:Canvas</p>
+                            <p class="product-price">Rs:9999</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a>
+                        </div>
+                    </a>
+                    <a href="detail-page.html" style="text-decoration: none;color: black;">
+                        <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                                src="images/figurativepainting(12).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Figurative Painting</h5>
+                            <p id="colour">color:Acrylic colour</p>
+                            <p id="surface">Surface:Canvas</p>
+                            <p class="product-price">Rs:11599</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a>
+                        </div>
+                    </a>
+                    <a href="detail-page.html" style="text-decoration: none;color: black;">
+                        <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                                src="images/religious painting(16).jpg" class="product-image" alt="Product Image">
+                            <h5 class="product-title">Religious Painting</h5>
+                            <p id="colour">color:Acrylic colour</p>
+                            <p id="surface">Surface:Canvas</p>
+                            <p class="product-price">Rs:8299</p>
+                            <a href="buynow.html" class="btn-buy">Buy Now</a>
+                        </div>
+                    </a>
+        <a href="detail-page.html" style="text-decoration: none;color: black;">
+                    <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                            src="images/abstract-painting (4).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Abstract Painting</h5>
+                        <p id="colour">color:Acrylic colour</p>
+                        <p id="surface">Surface:Canvas</p>
+                        <p class="product-price">Rs:26999</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a>
+                    </div>
+                </a>
+        
+                <a href="detail-page.html" style="text-decoration: none;color: black;">
+                    <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                            src="images/landscape painting(5).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Landscape Painting</h5>
+                        <p id="colour">color:Acrylic colour</p>
+                        <p id="surface">Surface:Canvas</p>
+                        <p class="product-price">Rs:15599</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a>
+                    </div>
+                </a>
+        
+                <a href="detail-page.html" style="text-decoration: none;color: black;">
+                    <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                            src="images/flowers painting(10).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Flower Painting</h5>
+                        <p id="colour">color:Acrylic colour</p>
+                        <p id="surface">Surface:Canvas</p>
+                        <p class="product-price">Rs:6999</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a>
+                    </div>
+                </a>
+        
+                <a href="detail-page.html" style="text-decoration: none;color: black;">
+                    <div class="product-card" data-color="Acrylic colour" data-surface="Canvas" data-price="6999"><img
+                            src="images/figurativepainting(23).jpg" class="product-image" alt="Product Image">
+                        <h5 class="product-title">Figurative Painting</h5>
+                        <p id="colour">color:Acrylic colour</p>
+                        <p id="surface">Surface:Canvas</p>
+                        <p class="product-price">Rs:14399</p>
+                        <a href="buynow.html" class="btn-buy">Buy Now</a>
+                    </div>
+                </a>
+        
+                
+            </div> </div>
+            </div>
+        </div>
+    </div>
+   <div id="footer"></div>
+</body>
+</html>

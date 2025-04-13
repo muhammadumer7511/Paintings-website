@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="javascript/navbar.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="javascript/footer.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery FAQs</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+           
+            background-color: #fff;
+            color: #000;
+        }
+        #heading{
+           margin-bottom: 14px;
+        }
+        #Menu{
+           position: relative;
+    
+           bottom: 28px;
+           left: 32px;
+             display: flex;
+  justify-content: flex-start;
+        }
+        .dropdown-item img {
+            width: 300px;
+        }
+        .faq-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #f4f4f4;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        #faqs-heading{
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: slideDown 1s ease-in-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .faq-section {
+            margin-bottom: 30px;
+        }
+        .faq-section h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .faq {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 0;
+        }
+        .faq:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 22px;
+            padding: 15px;
+            background: #ddd;
+            border-radius: 10px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .faq-question:hover {
+            background: #ccc;
+            transform: scale(1.02);
+        }
+        .faq-answer {
+            max-height:0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.3s;
+            padding: 0 15px;
+            font-size: 20px;
+            color: #333;
+            background: #eee;
+            border-radius: 10px;
+            line-height: 1.5;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        .faq-question.active + .faq-answer {
+            padding: 15px;
+        }
+        @media (max-width: 768px) {
+    .faq-question {
+        font-size: 18px;
+        padding: 12px;
+    }
+    
+    .faq-answer {
+        font-size: 16px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <div id="navbar"></div>
+    <div class="faq-container">
+        <h2 id="faqs-heading">FREQUENTLY ASKED QUESTIONS</h2>
+
+        <!-- 1. Original Paintings -->
+        <div class="faq-section">
+            <h3>Original Paintings</h3>
+            <div class="faq">
+                <div class="faq-question">How do I purchase an original painting?</div>
+                <div class="faq-answer">Select your desired artwork, add to cart, and complete checkout. We'll confirm your order and arrange secure shipping.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Can I request additional photos of a painting?</div>
+                <div class="faq-answer">Yes! Email us at art@galleria.com with the artwork ID for detailed photos from multiple angles.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">How is painting authenticity verified?</div>
+                <div class="faq-answer">All originals come with a signed certificate of authenticity and holographic security seal.</div>
+            </div>
+        </div>
+
+        <!-- 2. Shipping & Handling -->
+        <div class="faq-section">
+            <h3>Shipping & Handling</h3>
+            <div class="faq">
+                <div class="faq-question">How long does shipping take?</div>
+                <div class="faq-answer">Domestic: 3-5 business days. International: 7-14 days. Fragile items require special packaging.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Do you ship internationally?</div>
+                <div class="faq-answer">Yes, we ship worldwide with tracked and insured art carriers.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">How are paintings packaged?</div>
+                <div class="faq-answer">All works are shipped in custom crates with acid-free wrapping and shock-absorbent materials.</div>
+            </div>
+        </div>
+
+        <!-- 3. Custom Commissions -->
+        <div class="faq-section">
+            <h3>Custom Commissions</h3>
+            <div class="faq">
+                <div class="faq-question">How do commission requests work?</div>
+                <div class="faq-answer">Submit your request through our commission form. We'll discuss size, medium, and timeline.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">What's the commission deposit policy?</div>
+                <div class="faq-answer">A 30% non-refundable deposit secures your spot in our commission queue.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Can I request style modifications?</div>
+                <div class="faq-answer">Yes, we adapt to your preferred style while maintaining artistic integrity.</div>
+            </div>
+        </div>
+
+        <!-- 4. Artwork Care -->
+        <div class="faq-section">
+            <h3>Artwork Care</h3>
+            <div class="faq">
+                <div class="faq-question">How should I clean my painting?</div>
+                <div class="faq-answer">Gently dust with a soft brush. For deep cleaning, consult our professional conservation services.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">What's the ideal environment for oil paintings?</div>
+                <div class="faq-answer">Maintain 40-50% humidity and stable temperatures between 18-24°C (64-75°F).</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">How to protect from UV damage?</div>
+                <div class="faq-answer">Use UV-filtering glass and avoid direct sunlight. We offer protective glazing options.</div>
+            </div>
+        </div>
+
+        <!-- 5. Framing Options -->
+        <div class="faq-section">
+            <h3>Framing Options</h3>
+            <div class="faq">
+                <div class="faq-question">Do paintings come framed?</div>
+                <div class="faq-answer">Most works are sold unframed, but we offer optional framing services during checkout.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Can I request custom framing?</div>
+                <div class="faq-answer">Yes! Our framing studio offers 50+ moulding options and specialty finishes.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">What are museum-quality framing options?</div>
+                <div class="faq-answer">We use archival mats, UV-protective glazing, and acid-free mounting techniques.</div>
+            </div>
+        </div>
+
+        <!-- 6. Returns & Exchanges -->
+        <div class="faq-section">
+            <h3>Returns & Exchanges</h3>
+            <div class="faq">
+                <div class="faq-question">What's your return policy?</div>
+                <div class="faq-answer">Unopened works can be returned within 14 days. Custom pieces are final sale.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">How to handle damaged shipments?</div>
+                <div class="faq-answer">Document damage with photos and contact us immediately for replacement or refund.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Can I exchange for different artwork?</div>
+                <div class="faq-answer">Exchanges are possible within 7 days if artwork is in original condition.</div>
+            </div>
+        </div>
+
+        <!-- 7. Artist Collaborations -->
+        <div class="faq-section">
+            <h3>Artist Collaborations</h3>
+            <div class="faq">
+                <div class="faq-question">How to collaborate on exhibitions?</div>
+                <div class="faq-answer">Submit your portfolio through our Artist Relations portal for consideration.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Do you accept guest artists?</div>
+                <div class="faq-answer">We feature rotating guest artists quarterly. Apply through our website.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">What are gallery representation terms?</div>
+                <div class="faq-answer">Standard contract includes 2-year representation with 50/50 commission split.</div>
+            </div>
+        </div>
+
+        <!-- 8. Website Navigation -->
+        <div class="faq-section">
+            <h3>Website Navigation</h3>
+            <div class="faq">
+                <div class="faq-question">How to filter by medium?</div>
+                <div class="faq-answer">Use the sidebar filters to select oil, acrylic, watercolor, or mixed media.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Can I save favorites?</div>
+                <div class="faq-answer">Create an account to save pieces to your wishlist and receive availability alerts.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">How to view sold works?</div>
+                <div class="faq-answer">Check "Archive" in our menu to browse previously available pieces.</div>
+            </div>
+        </div>
+
+        <!-- 9. Conservation Techniques -->
+        <div class="faq-section">
+            <h3>Conservation Techniques</h3>
+            <div class="faq">
+                <div class="faq-question">What restoration services do you offer?</div>
+                <div class="faq-answer">Our studio provides cleaning, varnish removal, tear repair, and color retouching.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">How to preserve acrylic works?</div>
+                <div class="faq-answer">Keep away from extreme temperatures and clean with microfiber cloth only.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Do you provide conservation advice?</div>
+                <div class="faq-answer">Yes, our conservators offer free consultations for purchased artworks.</div>
+            </div>
+        </div>
+
+        <!-- 10. Exhibition Events -->
+        <div class="faq-section">
+            <h3>Exhibition Events</h3>
+            <div class="faq">
+                <div class="faq-question">How to attend private viewings?</div>
+                <div class="faq-answer">Join our Collector's Club for exclusive invitations to preview events.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Are virtual tours available?</div>
+                <div class="faq-answer">Yes, all exhibitions feature 360° virtual tours accessible from our website.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question">Can I request artist meetups?</div>
+                <div class="faq-answer">Special meet-and-greet events are scheduled quarterly. Check our events calendar.</div>
+            </div>
+        </div>
+    </div>
+     <div id="footer"></div>
+    <script>
+document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+        const answer = item.nextElementSibling;
+        
+        if (item.classList.contains('active')) {
+            // Collapse
+            answer.style.maxHeight = null;
+            answer.style.padding = "0 15px"; // Reset padding
+        } else {
+            // Expand
+            answer.style.display = 'block';
+            void answer.offsetHeight; // Force reflow
+            
+            // Calculate proper height with padding buffer
+            answer.style.maxHeight = `${answer.scrollHeight + 20}px`; 
+            answer.style.padding = "15px"; // Ensure padding is applied
+        }
+        
+        item.classList.toggle('active');
+    });
+});
+
+
+    </script>
+</body>
+</html>

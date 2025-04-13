@@ -1,0 +1,241 @@
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+.thumbnail:hover, .thumbnail.active {
+    opacity: 1;
+}
+
+#surface{
+    position:relative;
+    bottom: 13px;
+}
+
+#container{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.btn-buy {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    position: relative;
+    bottom: 35px;
+    transition: background 0.3s;
+}
+.btn-buy:hover {
+    color: #d1cece;
+}
+#buttonword{
+    color: white;
+background-color: black;
+border-radius: 6px;
+height: 42px;
+width: 115px;
+}
+#buttonword:hover{
+    color: #d1cece;
+}
+#mainImage{
+    height: 400px;
+}
+#buttonhover{
+color: white;
+background-color: black;
+border-radius: 9px;
+height: 42px;
+width: 115px;
+}
+#buttonhover:hover {
+    color: #d1cece;
+}
+.products-slider-container {
+    position: relative;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+  .products-slider {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+.products-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.slider-btn {
+    pointer-events: all;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.product-card {
+    flex: 0 0 282px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+/* Existing product card styles */
+.product-image {
+    width: 10px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-title {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+
+.product-price {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    bottom: 45px;
+}
+
+#colour { position: relative; bottom: 15px; }
+#surface { position: relative; bottom: 30px; }
+
+.btn-buy {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: background 0.3s;
+    position: relative;
+    bottom: 30px;
+    left: 90px;
+}
+
+.btn-buy:hover {
+    color: #d1cece;
+}
+
+/* Quantity input */
+#quantity { width: 80px; }
+
+/* Buy now button */
+#buttonhover {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+#buttonhover:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+slider-prev { left: 10px; }
+.slider-next { right: 10px; }
+
+.slider-prev:hover,
+.slider-next:hover {
+  background: rgba(0,0,0,0.8);
+}
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-title {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    bottom: 30px;
+    left: 100px;
+}
+
+#surface {
+    position: relative;
+    bottom: 20px;
+    left: 75px;
+}
+#Menu{
+    position: relative;
+    left:32px;
+    width: 76px;
+    margin-top: 9px;
+ }
+#colour {
+    position: relative;
+    bottom:8px;
+    left: 70px;
+}
+
