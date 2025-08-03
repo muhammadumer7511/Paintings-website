@@ -1,4 +1,4 @@
-// Load navbar
+// Load Navbar
 fetch("navbar.html")
   .then(response => response.text())
   .then(data => {
@@ -6,7 +6,7 @@ fetch("navbar.html")
   })
   .catch(error => console.error("Error loading navbar:", error));
 
-// Toggle main dropdown
+// Toggle Main Dropdown
 function toggleDropdown() {
   const dropdown = document.getElementById("imageDropdown");
   const btn = document.querySelector(".paintings-btn");
@@ -15,7 +15,7 @@ function toggleDropdown() {
   dropdown.classList.toggle("show");
   btn.classList.toggle("active");
 
-  // Close other dropdowns
+  // Close other dropdowns if any
   document.querySelectorAll('.dropdown-content').forEach(element => {
     if (element !== dropdown) element.classList.remove("show");
   });
@@ -24,7 +24,7 @@ function toggleDropdown() {
   });
 }
 
-// Toggle sidebar
+// Toggle Sidebar
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
@@ -33,12 +33,12 @@ function toggleSidebar() {
   overlay.classList.toggle("show");
 }
 
-// Toggle sidebar dropdown
+// Toggle Sidebar Dropdown
 function toggleSidebarDropdown() {
   document.getElementById("sidebarDropdown").classList.toggle("show");
 }
 
-// Navigate to selected painting page
+// Navigate to Page from Dropdown
 function navigateToPage() {
   const dropdown = document.getElementById("paintingDropdown");
   const selectedValue = dropdown.value;
@@ -47,23 +47,22 @@ function navigateToPage() {
   }
 }
 
-// Close dropdowns and sidebar when clicking outside
+// Close dropdowns & sidebar when clicking outside
 document.addEventListener("click", function (event) {
-  const isDropdownClick = event.target.closest(".dropdown");
-  const isSidebarClick = event.target.closest("#sidebar") || event.target.closest(".menu-btn");
+  const dropdown = document.getElementById("imageDropdown");
+  const btn = document.querySelector(".paintings-btn");
+  const sidebar = document.getElementById("sidebar");
 
-  // Handle dropdown close
-  if (!isDropdownClick) {
-    document.querySelectorAll('.dropdown-content').forEach(drop => drop.classList.remove("show"));
-    document.querySelectorAll('.paintings-btn').forEach(btn => btn.classList.remove("active"));
+  // Close dropdown if clicked outside
+  if (!event.target.closest(".dropdown") && !event.target.closest(".paintings-btn")) {
+    dropdown.classList.remove("show");
+    btn.classList.remove("active");
   }
 
-  // Handle sidebar close
-  if (!isSidebarClick) {
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
+  // Close sidebar if clicked outside
+  if (!event.target.closest(".menu-btn") && !event.target.closest("#sidebar")) {
     sidebar.classList.remove("active");
-    overlay.classList.remove("show");
+    document.getElementById("overlay").classList.remove("show");
   }
 });
 
