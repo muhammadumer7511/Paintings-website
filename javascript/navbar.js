@@ -1,101 +1,71 @@
-function loadNavbar() {
-  fetch("navbar.html")
-    .then((res) => res.text())
-    .then((data) => {
-      const navbarContainer = document.getElementById("navbar");
-      if (navbarContainer) {
-        navbarContainer.innerHTML = data;
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
 
-        // Wait until DOM updates with new HTML
-        requestAnimationFrame(() => {
-          if (typeof initNavbarFeatures === "function") {
-            initNavbarFeatures();
-          } else {
-            console.warn("initNavbarFeatures function not found.");
-          }
-        });
-      } else {
-        console.error("Navbar container not found.");
-      }
-    })
-    .catch((error) => console.error("Error loading navbar:", error));
-}
+    // Saari functionality ab yahan likho, kyunke navbar load ho chuka hoga:
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", loadNavbar);
-} else {
-  loadNavbar();
-}
+    // Toggle dropdown
+    function toggleDropdown() {
+      const dropdown = document.getElementById("imageDropdown");
+      const btn = document.querySelector(".paintings-btn");
 
-function initNavbarFeatures() {
-  // 🔻 Dropdown Toggle
-  const dropdownBtn = document.querySelector(".paintings-btn");
-  const dropdown = document.getElementById("imageDropdown");
-
-  if (dropdownBtn && dropdown) {
-    dropdownBtn.addEventListener("click", () => {
       dropdown.classList.toggle("show");
-      dropdownBtn.classList.toggle("active");
+      btn.classList.toggle("active");
 
-      // Close other dropdowns if any
-      document.querySelectorAll(".dropdown-content").forEach((el) => {
-        if (el !== dropdown) el.classList.remove("show");
+      // Close other dropdowns
+      document.querySelectorAll('.dropdown-content').forEach(element => {
+        if (element !== dropdown) element.classList.remove("show");
       });
-      document.querySelectorAll(".paintings-btn").forEach((btn) => {
-        if (btn !== dropdownBtn) btn.classList.remove("active");
+      document.querySelectorAll('.paintings-btn').forEach(otherBtn => {
+        if (otherBtn !== btn) otherBtn.classList.remove("active");
       });
-    });
-  }
-
-  // ❌ Close dropdown if clicked outside
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".dropdown")) {
-      dropdown?.classList.remove("show");
-      dropdownBtn?.classList.remove("active");
     }
-  });
 
-  // 📱 Sidebar Toggle
-  const sidebar = document.getElementById("sidebar");
-  const overlay = document.getElementById("overlay");
-  const menuBtn = document.querySelector(".menu-btn");
+    // Sidebar toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("show");
+    }
 
-  if (menuBtn && sidebar && overlay) {
-    menuBtn.addEventListener("click", () => {
-      const isActive = sidebar.classList.toggle("active");
-      overlay.classList.toggle("show", isActive);
+    // Sidebar dropdown toggle
+    function toggleSidebarDropdown() {
+      document.getElementById("sidebarDropdown").classList.toggle("show");
+    }
+
+    // Navigate to painting page
+    function navigateToPage() {
+      const dropdown = document.getElementById("paintingDropdown");
+      const selectedValue = dropdown.value;
+      if (selectedValue) window.location.href = selectedValue;
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("imageDropdown");
+      const btn = document.querySelector(".paintings-btn");
+      if (!event.target.closest(".dropdown")) {
+        dropdown.classList.remove("show");
+        btn.classList.remove("active");
+      }
     });
 
-    window.addEventListener("click", (e) => {
-      if (
-        !e.target.closest(".menu-btn") &&
-        !e.target.closest("#sidebar")
-      ) {
+    // Close sidebar when clicking outside
+    window.addEventListener("click", function (event) {
+      const sidebar = document.getElementById("sidebar");
+      if (!event.target.closest(".menu-btn") && !event.target.closest("#sidebar")) {
         sidebar.classList.remove("active");
-        overlay.classList.remove("show");
       }
     });
-  }
 
-  // 🧭 Sidebar Dropdown Toggle
-  const sidebarDropdown = document.getElementById("sidebarDropdown");
-  const sidebarDropdownBtn = document.getElementById("sidebarDropdownBtn");
-
-  if (sidebarDropdown && sidebarDropdownBtn) {
-    sidebarDropdownBtn.addEventListener("click", () => {
-      sidebarDropdown.classList.toggle("show");
-    });
-  }
-
-  // 🎯 Navigate to page via dropdown
-  const paintingDropdown = document.getElementById("paintingDropdown");
-  if (paintingDropdown) {
-    paintingDropdown.addEventListener("change", () => {
-      const selected = paintingDropdown.value;
-      if (selected) {
-        window.location.href = selected;
-      }
-    });
-  }
+    // 🧠 Bind functions to elements (after navbar loaded)
+    document.querySelector(".paintings-btn")?.addEventListener("click", toggleDropdown);
+    document.querySelector(".menu-btn")?.addEventListener("click", toggleSidebar);
+    document.querySelector(".sidebar-btn")?.addEventListener("click", toggleSidebarDropdown);
+    document.getElementById("paintingDropdown")?.addEventListener("change", navigateToPage);
+  })
+  .catch(error => console.error("Error loading navbar:", error));
 }
 
