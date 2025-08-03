@@ -1,20 +1,22 @@
-function initNavbar() {
-  const navbarContainer = document.getElementById("navbar");
-
+document.addEventListener("DOMContentLoaded", function () {
   fetch("navbar.html")
     .then((res) => res.text())
     .then((data) => {
-      navbarContainer.innerHTML = data;
+      const navbarContainer = document.getElementById("navbar");
+      if (navbarContainer) {
+        navbarContainer.innerHTML = data;
 
-      // Wait for DOM to fully update with the new HTML
-      requestAnimationFrame(() => {
-        initNavbarFeatures(); // ⬅️ Ensures all new elements are in DOM before running
-      });
+        // ⚡ Wait for DOM to update after innerHTML
+        setTimeout(() => {
+          initNavbarFeatures();
+        }, 0);
+      } else {
+        console.error("Navbar container not found.");
+      }
     })
     .catch((error) => console.error("Error loading navbar:", error));
-}
+});
 
-document.addEventListener("DOMContentLoaded", initNavbar);
 
 function initNavbarFeatures() {
   console.log("Navbar features initialized ✅");
