@@ -1,21 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initNavbar() {
+  const navbarContainer = document.getElementById("navbar");
+
   fetch("navbar.html")
     .then((res) => res.text())
     .then((data) => {
-      const navbarContainer = document.getElementById("navbar");
-      if (navbarContainer) {
-        navbarContainer.innerHTML = data;
+      navbarContainer.innerHTML = data;
 
-        // ⚡ Features initialize karo jab navbar load ho jaye
-        initNavbarFeatures();
-      } else {
-        console.error("Navbar container not found.");
-      }
+      // Wait for DOM to fully update with the new HTML
+      requestAnimationFrame(() => {
+        initNavbarFeatures(); // ⬅️ Ensures all new elements are in DOM before running
+      });
     })
     .catch((error) => console.error("Error loading navbar:", error));
-});
+}
+
+document.addEventListener("DOMContentLoaded", initNavbar);
 
 function initNavbarFeatures() {
+  console.log("Navbar features initialized ✅");
+
   // ✅ Sidebar toggle for small screen
   const menuToggle = document.getElementById("menuToggle");
   const sidebar = document.getElementById("sidebar");
@@ -28,11 +31,19 @@ function initNavbarFeatures() {
   // ✅ Dropdown toggle
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
   dropdownToggles.forEach((toggle) => {
-    toggle.addEventListener("click", function () {
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation(); // Prevent window click from firing
       const dropdownMenu = this.nextElementSibling;
       if (dropdownMenu) {
         dropdownMenu.classList.toggle("show");
       }
+    });
+  });
+
+  // ✅ Close dropdown on outside click
+  window.addEventListener("click", function () {
+    document.querySelectorAll(".dropdown-menu.show").forEach((menu) => {
+      menu.classList.remove("show");
     });
   });
 
@@ -51,13 +62,5 @@ function initNavbarFeatures() {
       }
     });
   }
-
-  // ✅ Close dropdown on outside click
-  window.addEventListener("click", function (e) {
-    if (!e.target.matches(".dropdown-toggle")) {
-      document.querySelectorAll(".dropdown-menu.show").forEach((menu) => {
-        menu.classList.remove("show");
-      });
-    }
-  });
 }
+
