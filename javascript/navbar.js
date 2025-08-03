@@ -1,26 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const navbarContainer = document.getElementById("navbar");
 
-  if (!navbarContainer) {
-    console.error("Navbar container not found.");
-    return;
+  if (!navbarContainer) return console.error("Navbar container not found.");
+
+  try {
+    const res = await fetch("navbar.html");
+    const html = await res.text();
+    navbarContainer.innerHTML = html;
+
+    // Wait until the DOM updates completely before initializing features
+    setTimeout(() => {
+      try {
+        initNavbarFeatures();
+      } catch (e) {
+        console.error("initNavbarFeatures error:", e);
+      }
+    }, 50); // small delay to make sure navbar is injected
+  } catch (err) {
+    console.error("Navbar load failed:", err);
   }
-
-  fetch("navbar.html")
-    .then((res) => res.text())
-    .then((data) => {
-      navbarContainer.innerHTML = data;
-
-      // Wait for DOM to inject and update
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          try {
-            initNavbarFeatures(); // your custom function to activate nav animations, etc.
-          } catch (e) {
-            console.error("Error initializing navbar features:", e);
-          }
-        }, 0);
-      });
-    })
-    .catch((error) => console.error("Error loading navbar:", error));
 });
+
