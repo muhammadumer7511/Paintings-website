@@ -1,16 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const navbarContainer = document.getElementById("navbar");
-
+function loadNavbar() {
   fetch("navbar.html")
     .then((res) => res.text())
     .then((data) => {
-      navbarContainer.innerHTML = data;
+      const navbarContainer = document.getElementById("navbar");
+      if (navbarContainer) {
+        navbarContainer.innerHTML = data;
 
-      // Ensure features init AFTER navbar is in DOM
-      setTimeout(initNavbarFeatures, 0);
+        // Wait until DOM updates with new HTML
+        requestAnimationFrame(() => {
+          if (typeof initNavbarFeatures === "function") {
+            initNavbarFeatures();
+          } else {
+            console.warn("initNavbarFeatures function not found.");
+          }
+        });
+      } else {
+        console.error("Navbar container not found.");
+      }
     })
-    .catch((err) => console.error("Error loading navbar:", err));
-});
+    .catch((error) => console.error("Error loading navbar:", error));
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", loadNavbar);
+} else {
+  loadNavbar();
+}
 
 function initNavbarFeatures() {
   // 🔻 Dropdown Toggle
